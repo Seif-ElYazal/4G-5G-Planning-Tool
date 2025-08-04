@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../static/style.css">
+    <title>4G Coverage Dimensioning</title>
+</head>
+
+<body>
+    <div class="nav">
+        <ul>
+            <li><a href="{{ url_for('base') }}">Home</a></li>
+            <li><a href="{{ url_for('cap_4G') }}">4G Capacity</a></li>
+            <li><a href="{{ url_for('cov_4G') }}">4G Coverage</a></li>
+            <li><a href="{{ url_for('cap_5G') }}">5G Capacity</a></li>
+            <li><a href="{{ url_for('cov_5G') }}">5G Coverage</a></li>
+
+        </ul>
+    </div>
+    <div class="container">
+        <h1>4G Coverage Dimensioning</h1>
+        <form method="POST">
+            <label for="total_area">Enter Total Area:</label>
+            <input type="number" name="total_area" step="0.01" required>
+
+            <!-- DL -->
+            <h3>Downlink Data</h3>
+
+            <label for="Txpwr_DL">Enter eNB Maximum Power:</label>
+            <input type="number" name="Txpwr_DL" step="0.01" required>
+
+            <label for="IM_DL">Enter Interferance Margin:</label>
+            <input type="number" name="IM_DL" required>
+
+            <label for="SINR_DL">Enter SINR:</label>
+            <input type="number" name="SINR_DL" step="0.0001" required>
+
+            <label for="PRB_DL">Enter PRB:</label>
+            <input type="number" name="PRB_DL" required>
+
+            <!-- UL -->
+            <h3>Uplink Data</h3>
+
+            <label for="Txpwr_UL">Enter UE Maximum Power:</label>
+            <input type="number" name="Txpwr_UL" step="0.01" required>
+
+            <label for="IM_UL">Enter Interferance Margin:</label>
+            <input type="number" name="IM_UL" required>
+
+            <label for="SINR_UL">Enter SINR:</label>
+            <input type="number" name="SINR_UL" step="0.0001" required>
+
+            <label for="PRB_UL">Enter PRB:</label>
+            <input type="number" name="PRB_UL" required>
+
+            <!-- Common Data -->
+            <h3>Common Data</h3>
+
+            <label for="frequency">Enter Frequency Band In MHz:</label>
+            <input type="number" name="frequency" step="0.01" required>
+
+            <label for="carrier">Enter Carrier BandWidth:</label>
+            <input type="number" name="carrier" step="0.01" required>
+
+            <label for="feeder_loss">Enter Feeder Loss:</label>
+            <input type="number" name="feeder_loss" step="0.00001" required>
+
+            <label for="coverage_prob">Enter Coverage Probability (98%, 95%, 90%, 85%):</label>
+            <input type="number" name="coverage_prob" step="0.01" required>
+
+
+            <label for="clutter_type">Enter Clutter Type (Rural, Sub-Urban, Urban, Dense-Urban):</label>
+            <input type="text" name="clutter_type" required>
+
+            <input type="submit" value="Calculate">
+        </form>
+
+        {% if N_UL  %}
+        <div class="results">
+            <h2>Results</h2>
+            <h4>Downlink Results:</h4>
+            <p>MAPL: {{ MAPL_DL }} dB</p>
+            <p>Site Radius: {{ R_DL }} km</p>
+            <p>Area per Site: {{ A_site_DL }} km²</p>
+            <p>Total Number of Sites Required: {{ N_DL }} sites</p>
+
+            <h4>Uplink Results:</h4>
+            <p>MAPL: {{ MAPL_UL }} dB</p>
+            <p>Site Radius: {{ R_UL }} km</p>
+            <p>Area per Site: {{ A_site_UL }} km²</p>
+            <p>Total Number of Sites Required: {{ N_UL }} sites</p>
+        </div>
+        {% endif %}
+    </div>
+</body>
+
+</html>

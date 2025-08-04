@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../static/style.css">
+    <title>4G Capacity Dimensioning</title>
+</head>
+
+<body>
+    <div class="nav">
+        <ul>
+            <li><a href="{{ url_for('base') }}">Home</a></li>
+            <li><a href="{{ url_for('cap_4G') }}">4G Capacity</a></li>
+            <li><a href="{{ url_for('cov_4G') }}">4G Coverage</a></li>
+            <li><a href="{{ url_for('cap_5G') }}">5G Capacity</a></li>
+            <li><a href="{{ url_for('cov_5G') }}">5G Coverage</a></li>
+
+        </ul>
+    </div>
+    <div class="container">
+        <h1>4G Capacity Dimensioning</h1>
+        <form method="POST">
+            <label for="No_cells_site">Enter Number of Cells Per Site:</label>
+            <input type="number" name="No_cells_site" step="0.01" required>
+
+            <label for="Q">Enter System Load (%):</label>
+            <input type="number" name="Q" step="0.01" required>
+
+            <label for="type_CP">'Short' CP or 'Long' CP:</label>
+            <input type="text" name="type_CP" required>
+
+            <label for="No_antennas">Enter Number Of Antennas:</label>
+            <input type="number" name="No_antennas" step="0.01" required>
+
+            <label for="type_mod">Enter Modulation Type (QPSK, 16QAM, 64QAM):</label>
+            <input type="text" name="type_mod" required>
+
+            <label for="CCH">Enter Control Channels (%):</label>
+            <input type="number" name="CCH" step="0.01" required>
+
+            <label for="Population">Enter Total Population:</label>
+            <input type="number" name="Population" step="0.01" required>
+
+            <label for="mobile_pent">Enter Mobile Penetration (%):</label>
+            <input type="number" name="mobile_pent" step="0.01" required>
+
+            <label for="market_sh">Enter Market Share (%):</label>
+            <input type="number" name="market_sh" step="0.01" required>
+
+            <label for="BHAU">Enter Busy Hour Active Users (%):</label>
+            <input type="number" name="BHAU" step="0.01" required>
+
+            <label for="BLER">Enter Block Error Rate (%):</label>
+            <input type="number" name="BLER" step="0.01" required>
+
+            <label for="DL_ratio">Enter Downlink Ratio:</label>
+            <input type="number" name="DL_ratio" step="0.01" required>
+
+            <!-- Voice Calls -->
+            <h3>Voice Calls Service Data</h3>
+            <label for="voice_call">Enter Voice Calls Penetration (%):</label>
+            <input type="number" name="voice_call" step="0.01" required>
+
+            <label for="session_bearer_VC">Enter Session Bearer:</label>
+            <input type="number" name="session_bearer_VC" step="0.01" required>
+
+            <label for="session_time_VC">Enter Session Time:</label>
+            <input type="number" name="session_time_VC" step="0.01" required>
+
+            <label for="duty_ratio_VC">Enter Session Duty Ratio (%):</label>
+            <input type="number" name="duty_ratio_VC" step="0.01" required>
+
+            <!-- Browsing -->
+            <h3>Browsing Service Data</h3>
+            <label for="browsing">Enter Browsing Penetration (%):</label>
+            <input type="number" name="browsing" step="0.01" required>
+
+            <label for="session_bearer_brow">Enter Session Bearer:</label>
+            <input type="number" name="session_bearer_brow" step="0.01" required>
+
+            <label for="session_time_brow">Enter Session Time:</label>
+            <input type="number" name="session_time_brow" step="0.01" required>
+
+            <label for="duty_ratio_brow">Enter Session Duty Ratio (%):</label>
+            <input type="number" name="duty_ratio_brow" step="0.01" required>
+
+            <!-- Gaming -->
+            <h3>Gaming Service Data</h3>
+            <label for="gaming">Enter Gaming Penetration (%):</label>
+            <input type="number" name="gaming" step="0.01" required>
+
+            <label for="session_bearer_gam">Enter Session Bearer:</label>
+            <input type="number" name="session_bearer_gam" step="0.01" required>
+
+            <label for="session_time_gam">Enter Session Time:</label>
+            <input type="number" name="session_time_gam" step="0.01" required>
+
+            <label for="duty_ratio_gam">Enter Session Duty Ratio (%):</label>
+            <input type="number" name="duty_ratio_gam" step="0.01" required>
+
+            <!-- Streaming -->
+            <h3>Streaming Service Data</h3>
+            <label for="streaming">Enter Streaming Penetration (%):</label>
+            <input type="number" name="streaming" step="0.01" required>
+
+            <label for="session_bearer_strem">Enter Session Bearer:</label>
+            <input type="number" name="session_bearer_strem" step="0.01" required>
+
+            <label for="session_time_strem">Enter Session Time:</label>
+            <input type="number" name="session_time_strem" step="0.01" required>
+
+            <label for="duty_ratio_strem">Enter Session Duty Ratio (%):</label>
+            <input type="number" name="duty_ratio_strem" step="0.01" required>
+
+            <input type="submit" value="Calculate">
+        </form>
+
+        {% if total_traffic_area %}
+        <div class="results">
+            <h2>Results</h2>
+            <p>Total Traffic Area: {{ total_traffic_area }} Mbps</p>
+            <p>FDD Traffic Capacity per Site: {{ site_traffic_fdd }} Mbps</p>
+            <p>Total Number of Sites (FDD): {{ N_fdd }} sites</p>
+            <p>TDD Traffic Capacity per Site: {{ site_traffic_tdd }} Mbps</p>
+            <p>Total Number of Sites (TDD): {{ N_tdd }} sites</p>
+        </div>
+        {% endif %}
+    </div>
+</body>
+
+</html>

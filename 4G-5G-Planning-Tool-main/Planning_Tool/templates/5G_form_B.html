@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../static/style.css">
+    <title>5G Coverage Dimensioning</title>
+</head>
+<body>
+    <div class="nav">
+        <ul>
+            <li><a href="{{ url_for('base') }}">Home</a></li>
+            <li><a href="{{ url_for('cap_4G') }}">4G Capacity</a></li>
+            <li><a href="{{ url_for('cov_4G') }}">4G Coverage</a></li>
+            <li><a href="{{ url_for('cap_5G') }}">5G Capacity</a></li>
+            <li><a href="{{ url_for('cov_5G') }}">5G Coverage</a></li>
+
+        </ul>
+    </div> 
+        <div class="container">
+        <h1>5G Coverage Dimensioning</h1>
+        <form method="POST">
+            <label for="total_area">Enter The Total Area:</label>
+            <input type="number" name="total_area" step="0.01" required>
+
+            <!-- DL -->
+            <h3>Downlink Data</h3>
+
+            <label for="Txpwr_DL">Enter gNB Transmitter Power:</label>
+            <input type="number" name="Txpwr_DL" step="0.01" required>
+
+            <label for="Tx_ant_gain_DL">Enter gNB Antenna Gain:</label>
+            <input type="number" name="Tx_ant_gain_DL" step="0.01" required>
+
+            <label for="Rx_ant_gain_DL">Enter The UE Antenna Gain:</label>
+            <input type="number" name="Rx_ant_gain_DL" step="0.01" required>
+
+            <label for="SINR_DL">Enter SINR:</label>
+            <input type="number" name="SINR_DL" step="0.01" required>
+
+            <label for="Im_DL">Enter Interference Margin:</label>
+            <input type="number" name="Im_DL" step="0.01" required>
+
+            <!-- UL -->
+            <h3>Uplink Data</h3>
+
+            <label for="Txpwr_UL">Enter UE Transmitter Power:</label>
+            <input type="number" name="Txpwr_UL" step="0.01" required>
+
+            <label for="Tx_ant_gain_UL">Enter UE Antenna Gain:</label>
+            <input type="number" name="Tx_ant_gain_UL" step="0.01" required>
+
+            <label for="Rx_ant_gain_UL">Enter The gNB Antenna Gain:</label>
+            <input type="number" name="Rx_ant_gain_UL" step="0.01" required>
+
+            <label for="SINR_UL">Enter SINR:</label>
+            <input type="number" name="SINR_UL" step="0.01" required>
+
+            <label for="Im_UL">Enter Interference Margin:</label>
+            <input type="number" name="Im_UL" step="0.01" required>
+
+            <!-- Common Data -->
+            <h3>Common Data</h3>
+
+            <label for="UE_NF">Enter Noise Figure For UE:</label>
+            <input type="number" name="UE_NF" step="0.01" required>
+
+            <label for="gNB_NF">Enter Noise Figure For gNB:</label>
+            <input type="number" name="gNB_NF" step="0.01" required>
+
+            <label for="frequency">Enter Frequency Band in GHz:</label>
+            <input type="number" name="frequency" step="0.00001" required>
+
+            <label for="BW">Enter Carrier Band Width in MHz:</label>
+            <input type="number" name="BW" step="0.01" required>
+
+            <!-- losses -->
+            <label for= "gNB_cable_loss">Enter The gNodeB Cable Loss:</label>
+            <input type="number" name="gNB_cable_loss" step="0.01" required>
+            
+            <label for= "penetration_loss">Enter Penetration Loss:</label>
+            <input type="number" name="penetration_loss" step="0.01" required>
+
+            <label for= "foliage_loss">Enter Foliage Loss:</label>
+            <input type="number" name="foliage_loss" step="0.01" required>
+
+            <label for= "body_loss">Enter Body Loss:</label>
+            <input type="number" name="body_loss" step="0.01" required>
+
+            <label for= "rain_fading">Enter Rain Fading Margin:</label>
+            <input type="number" name="rain_fading" step="0.01" required>
+
+            <label for= "slow_fading_margin">Enter Slow Fading Margin:</label>
+            <input type="number" name="slow_fading_margin" step="0.01" required>
+
+            <input type="submit" value="Calculate">
+        </form>
+
+        {% if MAPL_DL %}
+        <div class="results">
+            <h2>Results</h2>
+            <h4>Downlink Results:</h4>
+            <p>MAPL: {{ MAPL_DL }} dB</p>
+            <p>Site Radius: {{ R_DL }} km</p>
+            <p>Area per Site: {{ A_site_DL }} km²</p>
+            <p>Sites Required: {{ N_DL }} sites</p>
+
+            <h4>Uplink Results:</h4>
+            <p>MAPL: {{ MAPL_UL }} dB</p>
+            <p>Site Radius: {{ R_UL }} km</p>
+            <p>Area per Site: {{ A_site_UL }} km²</p>
+            <p>Sites Required: {{ N_UL }} sites</p>
+        </div>
+        {% endif %}
+    </div>
+    </div>
+</body>
+</html>

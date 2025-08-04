@@ -1,0 +1,128 @@
+/* forms */
+.nav {
+    padding: 20px 20px;
+    position: fixed;
+    top: 27%;
+}
+
+li {
+    list-style-type: none;
+    padding: 20px 20px;
+    border: 2px solid #fff;
+    margin: 10px 0;
+    text-align: center;
+    transition: color 0.7s ease;
+    position: relative;
+}
+li::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    height: 100%;
+    width: 0%;
+    background-color: #ffffff7b;
+    transition: width 1s ease;
+    z-index: 0;
+    }
+
+li:hover::after {
+    width: 100%;
+}
+a {
+    text-decoration: none;
+    color: #000;
+    font-size: 20px;
+    text-align: center;
+    position: relative;
+    z-index: 9;
+}
+a:hover{
+    color: #186e38;
+    cursor: pointer;
+}
+body {
+    font-family: Arial, sans-serif;
+    background-color: #89896d;
+    margin: 0;
+    padding: 0;
+}
+.container {
+    width: 60%;
+    margin: 0 auto;
+    background-color: #e9e7e2;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 8px 32px 0 #00000086;
+    border: 1px solid #ffffff33;
+    margin-top: 40px;
+}
+h1 {
+    text-align: center;
+    color: #ad5b33;
+}
+h3 {
+    color: #953c10;
+}
+form {
+    display: grid;
+    gap: 15px;
+    margin-top: 20px;
+}
+label {
+    font-size: 1rem;
+    color: #3f4238;
+}
+input[type="number"], input[type="text"], input[type="submit"] {
+    padding: 10px;
+    font-size: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    width: 100%;
+    box-sizing: border-box;
+}
+input[type="number"]:focus, input[type="text"]:focus{
+    border: none;
+    border-bottom: 1px solid #00000086;
+    outline: none;
+}
+input[type="submit"]:focus {
+    border: none;
+    outline: none;
+}
+input[type="submit"] {
+    background-color: #6b7056;
+    color: white;
+    border: none;
+    cursor: pointer;
+    transition: 0.7s;
+    padding: 13px 0;
+    font-size: 22px;
+    margin: 29px 0;
+}
+
+input[type="submit"]:hover {
+    background-color: #d4c7b0;
+    color: #000;
+}
+.results {
+    margin-top: 30px;
+    padding: 15px;
+    background-color: #e9ecef;
+    border-radius: 6px;
+}
+
+.results h2 {
+    text-align: center;
+    color: #333;
+}
+.results p {
+    font-size: 1.1rem;
+    color: #333;
+}
+
+.footer {
+    text-align: center;
+    margin-top: 40px;
+    color: #777;
+}
